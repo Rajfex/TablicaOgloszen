@@ -1,0 +1,17 @@
+﻿@model TablicaOgloszen.Models.Post
+
+@{
+    ViewData["Title"] = "Post";
+}
+<div>
+	<h1>
+		@Html.DisplayFor(model => model.Title)
+	</h1>
+	<hr/>
+	<p>
+		@Html.DisplayFor(model => model.Description)
+	</p>
+	<p>
+		@Html.DisplayFor(model => model.Date)
+	</p>
+</div>

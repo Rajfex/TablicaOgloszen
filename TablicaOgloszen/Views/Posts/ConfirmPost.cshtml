@@ -1,0 +1,19 @@
+﻿@model TablicaOgloszen.Models.Post
+
+@{
+    ViewData["Title"] = "Confirm post";
+}
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+<hr />
+<p>@Html.DisplayFor(model => model.Description)</p>
+<p>@Html.DisplayFor(model => model.Date)</p>
+
+<form asp-action="Create" method="post">
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.Date)
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancle</a>
+</form>
