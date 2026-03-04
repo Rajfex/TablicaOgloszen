@@ -2,42 +2,30 @@
 using Microsoft.EntityFrameworkCore;
 using TablicaOgloszen.Models;
 using System.Linq;
+using TablicaOgloszen.Interfaces;
 
 namespace TablicaOgloszen.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IPostsService _postsService;
 
-        public PostsController(AppDbContext context)
+        public PostsController(IPostsService postsService)
         {
-            _context = context;
+            _postsService = postsService;
         }
 
         // GET: Posts
         public async Task<IActionResult> Index(int page = 1)
         {
-            DateTime now = DateTime.Now;
-            DateTime sinseWhen = now.AddDays(-10);
-
-            var posts = _context.Posts
-                .Where(p => p.Date >= sinseWhen)
-                .OrderByDescending(p => p.Date);
-
             int pageSize = 2;
-            var postsReturn = await posts
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
+            var posts = await _postsService.GetRecentPosts(10, page, pageSize);
             ViewBag.CurrentPage = page;
-
-            return View(postsReturn);
+            return View(posts);
         }
 
-
         // GET: Posts/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -48,8 +36,7 @@ namespace TablicaOgloszen.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(post);
-                await _context.SaveChangesAsync();
+                await _postsService.CreatePost(post);
                 return RedirectToAction(nameof(Index));
             }
             return View(post);
@@ -59,25 +46,21 @@ namespace TablicaOgloszen.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
-            var post = await _context.Posts
-                .FirstOrDefaultAsync(m => m.Id == id);
+
+            var post = await _postsService.GetPostById(id.Value);
             if (post == null)
-            {
                 return NotFound();
-            }
+
             return View(post);
         }
 
         // GET: Posts/ConfirmPost
-        public async Task<IActionResult> ConfirmPost(Post post)
+        public IActionResult ConfirmPost(Post post)
         {
             if (post == null)
-            {
                 return NotFound();
-            }
+
             return View(post);
         }
     }
