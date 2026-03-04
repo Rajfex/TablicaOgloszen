@@ -7,5 +7,5 @@ public class AppDbContext : DbContext
         : base(options)
     {
     }
-    public DbSet<Post> Posty { get; set; }
+    public DbSet<Post> Posts { get; set; }
 }

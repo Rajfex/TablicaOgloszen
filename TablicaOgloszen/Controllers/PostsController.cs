@@ -20,7 +20,7 @@ namespace TablicaOgloszen.Controllers
             DateTime now = DateTime.Now;
             DateTime sinseWhen = now.AddDays(-10);
 
-            var posts = _context.Posty
+            var posts = _context.Posts
                 .Where(p => p.Date >= sinseWhen)
                 .OrderByDescending(p => p.Date);
 
@@ -62,7 +62,7 @@ namespace TablicaOgloszen.Controllers
             {
                 return NotFound();
             }
-            var post = await _context.Posty
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
