@@ -10,20 +10,15 @@ A web-based notice board application designed for managing and browsing posts. T
 - **Database**: SQL Server
 
 ## Installation and Setup
-1. Clone the repository:
+Clone the repository:
 ``` bash
 git clone https://github.com/Rajfex/TablicaOgloszen.git
 ```
-2. Navigate to the project directory:
-``` bash
-cd TablicaOgloszen
-```
-3. Install the required dependencies:
-``` bash
-dotnet restore
-```
-4. Configure the database connection string in the configuration files.
-5. Run the application:
-``` bash
-dotnet run
-```
+Open the solution file ```(.sln)``` in Visual Studio.
+
+Update the connection string in appsettings.json.
+
+Run migrations to set up the database:
+```Update-Database```
+
+Build and run the application.
