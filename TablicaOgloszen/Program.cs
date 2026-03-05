@@ -49,6 +49,20 @@ namespace TablicaOgloszen
                 pattern: "{controller=Posts}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<AppDbContext>();
+                    context.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    Log.Fatal(ex, "Error while loading migration");
+                }
+            }
+
             app.Run();
         }
     }
