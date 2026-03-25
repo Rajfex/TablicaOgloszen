@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TablicaOgloszen.Interfaces;
 using TablicaOgloszen.Models;
 
 namespace TablicaOgloszen.Services

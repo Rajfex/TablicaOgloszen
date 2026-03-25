@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using TablicaOgloszen.Interfaces;
 using TablicaOgloszen.Services;
 
 namespace TablicaOgloszen

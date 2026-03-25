@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TablicaOgloszen.Models;
 using System.Linq;
-using TablicaOgloszen.Interfaces;
+using TablicaOgloszen.Services;
 
 namespace TablicaOgloszen.Controllers
 {

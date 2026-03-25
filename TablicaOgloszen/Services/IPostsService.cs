@@ -1,6 +1,6 @@
 ﻿using TablicaOgloszen.Models;
 
-namespace TablicaOgloszen.Interfaces
+namespace TablicaOgloszen.Services
 {
     public interface IPostsService
     {
